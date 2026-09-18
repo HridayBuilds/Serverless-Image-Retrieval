@@ -55,7 +55,7 @@ def test_delete_event_cascade_deletes_collection_faces_photos_s3_and_attendees(m
     assert result == {"eventID": "evt_1", "deleted": True}
     assert collection_calls == ["glimpses-event-evt_1"]
     assert faces_calls == [["f1", "f2"]]
-    assert s3_calls == [("glimpses-photos-test-bucket", ["photos/event/evt_1/p1.jpg", "thumbnails/event/evt_1/p1.jpg"])]
+    assert s3_calls == [("glimpses-photos-712906641804-test-bucket", ["photos/event/evt_1/p1.jpg", "thumbnails/event/evt_1/p1.jpg"])]
     assert photos_calls == [["p1"]]
     assert attendees_calls == [("evt_1", ["user_1", "user_2"])]
     assert row_calls == ["evt_1"]

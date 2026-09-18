@@ -5,7 +5,7 @@ variable "name_prefix" {
 }
 
 variable "deploy_artifacts_bucket" {
-  description = "Name of the shared glimpses-deploy-artifacts S3 bucket Jenkins pushes this Lambda's zip to (T-06)"
+  description = "Name of the shared glimpses-deploy-artifacts-712906641804 S3 bucket Jenkins pushes this Lambda's zip to (T-06)"
   type        = string
 }
 

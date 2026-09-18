@@ -1,10 +1,10 @@
 import os
 
 os.environ.setdefault("AWS_DEFAULT_REGION", "ap-south-1")
-os.environ.setdefault("PHOTOS_TABLE_NAME", "glimpses-photos-test")
+os.environ.setdefault("PHOTOS_TABLE_NAME", "glimpses-photos-712906641804-test")
 os.environ.setdefault("EVENTS_TABLE_NAME", "glimpses-events-test")
 os.environ.setdefault("EVENT_ATTENDEES_TABLE_NAME", "glimpses-event-attendees-test")
-os.environ.setdefault("PHOTOS_BUCKET", "glimpses-photos-test-bucket")
+os.environ.setdefault("PHOTOS_BUCKET", "glimpses-photos-712906641804-test-bucket")
 os.environ.setdefault("CLOUDFRONT_DOMAIN", "d123456.cloudfront.net")
 os.environ.setdefault("CLOUDFRONT_KEY_PAIR_ID", "K1234567890ABC")
 

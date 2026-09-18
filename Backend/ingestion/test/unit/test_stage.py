@@ -28,7 +28,7 @@ def test_stage_copies_each_entry_raw_and_writes_manifest(monkeypatch):
     monkeypatch.setattr(stage, "put_object", lambda bucket, key, body, content_type=None: stored_objects.update({key: body}))
 
     result = stage.handle_stage({
-        "bucket": "glimpses-photos-test-bucket",
+        "bucket": "glimpses-photos-712906641804-test-bucket",
         "key": "uploads/event/evt_1/user/user_1/job/job_1/original.zip",
     })
 
@@ -54,7 +54,7 @@ def test_stage_does_no_format_sniffing_or_decoding(monkeypatch):
     monkeypatch.setattr(stage, "put_object", lambda bucket, key, body, content_type=None: stored_objects.update({key: body}))
 
     result = stage.handle_stage({
-        "bucket": "glimpses-photos-test-bucket",
+        "bucket": "glimpses-photos-712906641804-test-bucket",
         "key": "uploads/event/evt_1/user/user_1/job/job_1/original.zip",
     })
 

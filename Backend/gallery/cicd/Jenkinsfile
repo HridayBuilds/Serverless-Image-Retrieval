@@ -29,7 +29,7 @@ pipeline {
         stage('Push to deployment-artifacts') {
             steps {
                 dir('Backend/gallery') {
-                    sh 'aws s3 cp build.zip s3://glimpses-deploy-artifacts/gallery/build.zip'
+                    sh 'aws s3 cp build.zip s3://glimpses-deploy-artifacts-712906641804/gallery/build.zip'
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
         }
         stage('Update Lambda code') {
             steps {
-                sh 'aws lambda update-function-code --function-name glimpses-gallery --s3-bucket glimpses-deploy-artifacts --s3-key gallery/build.zip'
+                sh 'aws lambda update-function-code --function-name glimpses-gallery --s3-bucket glimpses-deploy-artifacts-712906641804 --s3-key gallery/build.zip'
             }
         }
     }

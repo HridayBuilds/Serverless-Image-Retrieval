@@ -124,5 +124,5 @@ def test_build_marks_failed_and_aborts_multipart_on_error(monkeypatch):
     except RuntimeError:
         pass
 
-    assert aborted == {"bucket": "glimpses-photos-test-bucket", "key": "downloads/event/evt_1/dl_1.zip", "upload_id": "upload-1"}
+    assert aborted == {"bucket": "glimpses-photos-712906641804-test-bucket", "key": "downloads/event/evt_1/dl_1.zip", "upload_id": "upload-1"}
     assert status_updates == {"status": "FAILED"}

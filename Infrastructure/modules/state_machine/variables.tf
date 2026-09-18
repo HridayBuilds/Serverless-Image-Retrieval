@@ -15,12 +15,12 @@ variable "db_api_function_arn" {
 }
 
 variable "photos_bucket_name" {
-  description = "Name of the glimpses-photos bucket, matched by the upload-complete EventBridge rule"
+  description = "Name of the glimpses-photos-712906641804 bucket, matched by the upload-complete EventBridge rule"
   type        = string
 }
 
 variable "photos_bucket_arn" {
-  description = "ARN of the glimpses-photos bucket, for IAM scoping IndexPhotos' manifest read (uploads/ prefix)"
+  description = "ARN of the glimpses-photos-712906641804 bucket, for IAM scoping IndexPhotos' manifest read (uploads/ prefix)"
   type        = string
 }
 

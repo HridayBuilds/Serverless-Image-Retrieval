@@ -5,7 +5,7 @@ variable "name_prefix" {
 }
 
 variable "deploy_artifacts_bucket" {
-  description = "Name of the shared glimpses-deploy-artifacts S3 bucket Jenkins pushes this Lambda's zip to (T-06)"
+  description = "Name of the shared glimpses-deploy-artifacts-712906641804 S3 bucket Jenkins pushes this Lambda's zip to (T-06)"
   type        = string
 }
 
@@ -65,12 +65,12 @@ variable "users_table_arn" {
 }
 
 variable "photos_bucket_name" {
-  description = "Name of the shared glimpses-photos S3 bucket (T-09) — one bucket, six prefixes"
+  description = "Name of the shared glimpses-photos-712906641804 S3 bucket (T-09) — one bucket, six prefixes"
   type        = string
 }
 
 variable "photos_bucket_arn" {
-  description = "ARN of the shared glimpses-photos S3 bucket, for IAM prefix scoping"
+  description = "ARN of the shared glimpses-photos-712906641804 S3 bucket, for IAM prefix scoping"
   type        = string
 }
 

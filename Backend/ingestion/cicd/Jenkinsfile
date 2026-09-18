@@ -29,7 +29,7 @@ pipeline {
         stage('Push to deployment-artifacts') {
             steps {
                 dir('Backend/ingestion') {
-                    sh 'aws s3 cp build.zip s3://glimpses-deploy-artifacts/ingestion/build.zip'
+                    sh 'aws s3 cp build.zip s3://glimpses-deploy-artifacts-712906641804/ingestion/build.zip'
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
         }
         stage('Update Lambda code') {
             steps {
-                sh 'aws lambda update-function-code --function-name glimpses-ingestion --s3-bucket glimpses-deploy-artifacts --s3-key ingestion/build.zip'
+                sh 'aws lambda update-function-code --function-name glimpses-ingestion --s3-bucket glimpses-deploy-artifacts-712906641804 --s3-key ingestion/build.zip'
             }
         }
     }
