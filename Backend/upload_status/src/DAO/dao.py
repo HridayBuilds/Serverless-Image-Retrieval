@@ -1,6 +1,7 @@
 import os
 
 import boto3
+from botocore.client import Config
 
 JOBS_GSI = "eventUploaderKey-startedAt-index"
 PUT_EXPIRES_IN = 3600
@@ -15,7 +16,15 @@ def _events_table():
 
 
 def _s3():
-    return boto3.client("s3")
+    region = os.environ.get("AWS_REGION", "ap-south-1")
+    return boto3.client(
+        "s3",
+        region_name=region,
+        config=Config(
+            signature_version="s3v4",
+            s3={"addressing_style": "virtual"},
+        ),
+    )
 
 
 def generate_presigned_put_url(key):
