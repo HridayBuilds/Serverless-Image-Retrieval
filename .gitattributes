@@ -1,0 +1,4 @@
+*.html linguist-detectable=false
+graphify-out/** linguist-vendored
+graphify-out/** linguist-documentation
+Frontend/index.html linguist-detectable=false
