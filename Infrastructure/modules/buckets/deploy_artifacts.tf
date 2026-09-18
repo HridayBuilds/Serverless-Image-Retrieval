@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "deploy_artifacts" {
-  bucket = "${var.name_prefix}-deploy-artifacts"
+  bucket = "${var.name_prefix}-deploy-artifacts-712906641804"
 }
 
 resource "aws_s3_bucket_public_access_block" "deploy_artifacts" {

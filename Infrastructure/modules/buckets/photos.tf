@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "photos" {
-  bucket = "${var.name_prefix}-photos"
+  bucket = "${var.name_prefix}-photos-712906641804"
 }
 
 resource "aws_s3_bucket_public_access_block" "photos" {
