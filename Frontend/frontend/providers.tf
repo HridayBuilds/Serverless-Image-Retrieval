@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket       = "glimpses-terraform-state"
+    bucket       = "glimpses-terraform-state-712906641804"
     key          = "glimpses/frontend/terraform.tfstate"
     region       = "ap-south-1"
     use_lockfile = true

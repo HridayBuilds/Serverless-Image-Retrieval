@@ -1,6 +1,4 @@
-
-def repoUrl = 'https://github.com/HridayBuilds/Glimpses.git'
-def credentialsId = 'github-glimpses-pat'
+def repoUrl = 'https://github.com/HridayBuilds/Serverless-Image-Retrieval.git'
 def branch = '*/main'
 
 def jenkinsfiles = readFileFromWorkspace('jenkinsfiles.txt').readLines().findAll { it.trim() }
@@ -18,7 +16,6 @@ jenkinsfiles.each { path ->
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <url>${repoUrl}</url>
-        <credentialsId>${credentialsId}</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>

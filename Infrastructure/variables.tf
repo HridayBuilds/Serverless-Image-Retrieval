@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "alarm_email" {
   description = "Email address subscribed to the shared operator-alerts SNS topic (T-07)"
   type        = string
-  default     = "johndoe@gmail.com"
+  default     = "hridaymulchandani21@gmail.com"
 }
 
 variable "frontend_domain_name" {
