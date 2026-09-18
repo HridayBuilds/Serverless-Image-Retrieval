@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "hosting" {
-  bucket = "${var.name_prefix}-frontend"
+  bucket = "${var.name_prefix}-frontend-712906641804"
 }
 
 resource "aws_s3_bucket_public_access_block" "hosting" {

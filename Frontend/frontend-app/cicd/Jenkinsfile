@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_PROFILE = 'glimpses'
+        AWS_PROFILE = 'glimpses-profile'
     }
 
     stages {
