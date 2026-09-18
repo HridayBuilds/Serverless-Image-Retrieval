@@ -1,6 +1,7 @@
 import os
 
 import boto3
+from botocore.client import Config
 from botocore.exceptions import ClientError
 
 SELFIE_CACHE_CONTROL = "private, max-age=86400"
@@ -17,7 +18,15 @@ def _users_table():
 
 
 def _s3():
-    return boto3.client("s3")
+    region = os.environ.get("AWS_REGION", "ap-south-1")
+    return boto3.client(
+        "s3",
+        region_name=region,
+        config=Config(
+            signature_version="s3v4",
+            s3={"addressing_style": "virtual"}
+        )
+    )
 
 
 def _rekognition():
