@@ -1,18 +1,3 @@
-resource "aws_api_gateway_rest_api" "this" {
-  name = "${var.name_prefix}-api"
-
-  endpoint_configuration {
-    types = ["REGIONAL"]
-  }
-}
-
-resource "aws_api_gateway_authorizer" "cognito" {
-  name          = "${var.name_prefix}-cognito-authorizer"
-  rest_api_id   = aws_api_gateway_rest_api.this.id
-  type          = "COGNITO_USER_POOLS"
-  provider_arns = [var.cognito_user_pool_arn]
-}
-
 locals {
   routes = merge(
     local.profile_routes,
@@ -23,7 +8,49 @@ locals {
     local.download_routes,
   )
 
-  route_resource_ids = distinct([for route in local.routes : route.resource_id])
+  cors_resources = {
+    # routes_membership.tf
+    event_info               = aws_api_gateway_resource.event_info.id
+    event_join               = aws_api_gateway_resource.event_join.id
+    event_leave              = aws_api_gateway_resource.event_leave.id
+    event_attendees          = aws_api_gateway_resource.event_attendees.id
+    event_attendee_user_id   = aws_api_gateway_resource.event_attendee_user_id.id
+    event_attendee_admit     = aws_api_gateway_resource.event_attendee_admit.id
+    event_attendee_deny      = aws_api_gateway_resource.event_attendee_deny.id
+    event_attendee_eject     = aws_api_gateway_resource.event_attendee_eject.id
+
+    # routes_events.tf
+    events                   = aws_api_gateway_resource.events.id
+    event_id                 = aws_api_gateway_resource.event_id.id
+    events_my_events         = aws_api_gateway_resource.events_my_events.id
+    event_archive            = aws_api_gateway_resource.event_archive.id
+    event_stats              = aws_api_gateway_resource.event_stats.id
+    event_qrcode             = aws_api_gateway_resource.event_qrcode.id
+
+    # routes_gallery.tf
+    event_photos             = aws_api_gateway_resource.event_photos.id
+    event_photo_id           = aws_api_gateway_resource.event_photo_id.id
+    event_photos_download_urls = aws_api_gateway_resource.event_photos_download_urls.id
+    event_photos_bulk_delete = aws_api_gateway_resource.event_photos_bulk_delete.id
+
+    # routes_download.tf
+    event_photos_download    = aws_api_gateway_resource.event_photos_download.id
+    event_downloads          = aws_api_gateway_resource.event_downloads.id
+    event_download_id        = aws_api_gateway_resource.event_download_id.id
+    event_download_status    = aws_api_gateway_resource.event_download_status.id
+
+    # routes_upload_status.tf
+    event_upload_url         = aws_api_gateway_resource.event_upload_url.id
+    event_jobs               = aws_api_gateway_resource.event_jobs.id
+    event_job_id             = aws_api_gateway_resource.event_job_id.id
+    event_job_status         = aws_api_gateway_resource.event_job_status.id
+    event_jobs_latest        = aws_api_gateway_resource.event_jobs_latest.id
+
+    # routes_profile.tf
+    profile                  = aws_api_gateway_resource.profile.id
+    profile_selfie           = aws_api_gateway_resource.profile_selfie.id
+    profile_selfie_confirm   = aws_api_gateway_resource.profile_selfie_confirm.id
+  }
 }
 
 resource "aws_api_gateway_method" "route" {
@@ -51,7 +78,7 @@ resource "aws_api_gateway_integration" "route" {
 }
 
 resource "aws_api_gateway_method" "options" {
-  for_each = toset(local.route_resource_ids)
+  for_each = local.cors_resources
 
   rest_api_id   = aws_api_gateway_rest_api.this.id
   resource_id   = each.value
@@ -60,7 +87,7 @@ resource "aws_api_gateway_method" "options" {
 }
 
 resource "aws_api_gateway_integration" "options" {
-  for_each = toset(local.route_resource_ids)
+  for_each = local.cors_resources
 
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = each.value
@@ -73,7 +100,7 @@ resource "aws_api_gateway_integration" "options" {
 }
 
 resource "aws_api_gateway_method_response" "options" {
-  for_each = toset(local.route_resource_ids)
+  for_each = local.cors_resources
 
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = each.value
@@ -88,7 +115,7 @@ resource "aws_api_gateway_method_response" "options" {
 }
 
 resource "aws_api_gateway_integration_response" "options" {
-  for_each = toset(local.route_resource_ids)
+  for_each = local.cors_resources
 
   rest_api_id = aws_api_gateway_rest_api.this.id
   resource_id = each.value
@@ -128,7 +155,7 @@ resource "aws_api_gateway_deployment" "this" {
   triggers = {
     redeployment = sha1(jsonencode({
       routes  = local.routes
-      options = local.route_resource_ids
+      options = local.cors_resources
     }))
   }
 
