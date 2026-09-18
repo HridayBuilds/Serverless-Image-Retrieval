@@ -456,7 +456,7 @@ cd Infrastructure
 terraform init
 ```
 
-Apply modules in dependency order (this project's actual order, run either by hand or through the 17 Jenkins jobs described below):
+Apply the modules in dependency order (this project's actual order, run either by hand or through the 17 Jenkins jobs described below):
 
 ```
 dynamodb -> buckets -> alarms -> cloudfront
