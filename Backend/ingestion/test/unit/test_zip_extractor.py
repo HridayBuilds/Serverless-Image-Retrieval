@@ -15,6 +15,22 @@ def _make_zip(entries):
             archive.writestr(filename, content)
     return buffer.getvalue()
 
+def test_extract_entries_skips_macosx_and_dotfiles():
+    zip_bytes = _make_zip(
+        {
+            "Trip/IMG_1.jpg": b"real photo",
+            "__MACOSX/Trip/._IMG_1.jpg": b"appledouble",
+            "Trip/.DS_Store": b"finder metadata",
+            "__MACOSX/Trip/._.DS_Store": b"appledouble ds_store",
+            "Trip/Thumbs.db": b"windows thumbnail cache",
+            "Trip/desktop.ini": b"windows folder config",
+            "Trip/ehthumbs.db": b"windows media center cache",
+        }
+    )
+
+    entries = list(extract_entries(zip_bytes))
+
+    assert entries == [("Trip/IMG_1.jpg", b"real photo")]
 
 def test_extract_entries_skips_macosx_and_dotfiles():
     zip_bytes = _make_zip(
