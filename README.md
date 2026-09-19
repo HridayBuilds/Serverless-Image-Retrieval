@@ -41,7 +41,7 @@
 
 ## What it does
 
-An organizer creates an event and shares a join code or QR code. Guests join and upload their photos, either one at a time or all at once as a zip straight off their camera roll, and everyone in the event can browse the shared gallery right away.
+An organizer creates an event and shares a join code or QR code. Guests join the event and upload their photos, either individually or all at once as a ZIP directly from their camera roll. Everyone in the event can then browse the shared gallery instantly.
 
 Every guest also gets a **"Photos of me"** tab, built automatically. Glimpses compares each guest's selfie against every face detected in every uploaded photo, so nobody has to scroll through hundreds of photos looking for the ones they're actually in. No manual tagging, and no "can someone send me the ones with me in them" group chat message.
 
